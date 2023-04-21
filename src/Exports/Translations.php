@@ -15,34 +15,31 @@ class Translations implements FromCollection, WithHeadings
         return DB::table('language_lines')->get();
     }
 
-    public function prepareRows($rows)
+    public function prepareRows($rows): Collection
     {
-        $allLocale = array_flip($this->languageKeys());
-        $allLocale = array_fill_keys(array_keys($allLocale), '');
+        $languageKeys = $this->getLanguageKeys();
 
-        return collect($rows)->transform(function ($languageLine) use (&$allLocale) {
+        return collect($rows)->transform(function ($languageLine) use ($languageKeys) {
             $languageFields = json_decode($languageLine->text, true);
+            $allLocale = array_fill_keys($languageKeys, '');
             return array_merge((array) $languageLine, array_merge($allLocale, $languageFields));
         });
-
-
     }
 
     public function headings(): array
     {
-        return array_merge(array_keys(LanguageLine::first()->toArray()), $this->languageKeys());
-
+        $languageKeys = $this->getLanguageKeys();
+        return array_merge(array_keys(LanguageLine::first()->toArray()), $languageKeys);
     }
 
-    public function languageKeys(): array
+    private function getLanguageKeys(): array
     {
-        $distinctLanguagesFromDatabase = collect(DB::select('select distinct JSON_KEYS(text) as "languages" from language_lines'));
+        $distinctLanguages = DB::select('select distinct JSON_KEYS(text) as "languages" from language_lines');
         $languageKeys = [];
-        $distinctLanguagesFromDatabase->each(function ($languages) use (&$languageKeys) {
+        foreach ($distinctLanguages as $languages) {
             $keys = explode(',', str_replace(['[', ']', '"', ' '], '', $languages->languages));
             $languageKeys = array_unique(array_merge($languageKeys, $keys));
-        });
-
+        }
         return $languageKeys;
     }
 }
