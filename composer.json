@@ -1,6 +1,6 @@
 {
     "name": "delta-solutions/translations-export-import",
-    "description": "This package provides two artisan commands to export and import language_lines from the spatie translations package table to Excel.",
+    "description": "Export and import your spatie/laravel-translation-loader powered translations to and from Excel",
     "keywords": [
         "Delta-Solutions",
         "laravel",
