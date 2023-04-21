@@ -41,9 +41,18 @@ php artisan translations:import --filename=yourFileName.xlsx
 
 If you want to add language lines it's as easy as adding Excel rows.
 
+
+
 ## Adding translations
 
 If you want to add a translation it's as easy as adding columns to Excel.
+
+## Example
+
+![example of Excel](https://github.com/Delta-Solutions/assets/blob/main/translations-export-import/excel.png)
+
+![example of imported result](https://github.com/Delta-Solutions/assets/blob/main/translations-export-import/imported.png)
+
 
 ## Changelog
 
