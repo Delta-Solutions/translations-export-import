@@ -19,16 +19,17 @@ class Translations implements ToModel, WithProgressBar, WithHeadingRow
         unset($row['id']);
         $row['text'] = [];
 
-        $fields = Schema::getColumnListing('language_lines');
-        $textFields = array_diff(array_keys($row), $fields);
-        $valuesToExtract = array_intersect_key($row, array_flip($textFields));
-        $filteredArray = array_filter($valuesToExtract, function ($value) {
-            return ! blank($value);
+        $fields            = Schema::getColumnListing('language_lines');
+        $textFields        = array_diff(array_keys($row), $fields);
+        $valuesToExtract   = array_intersect_key($row, array_flip($textFields));
+        $filteredArray     = array_filter($valuesToExtract, function ($value) {
+            return !blank($value);
         });
-        $row['text'] = $filteredArray;
+        $row['text']       = $filteredArray;
         $row['updated_at'] = Carbon::now();
-        $row = array_diff_key($row, array_flip($textFields));
-
+        $row               = array_diff_key($row, array_flip($textFields));
+        if (filled($row['group']) && filled($row['key'])){
         return LanguageLine::updateOrCreate(['group' => $row['group'], 'key' => $row['key']], $row);
+    }
     }
 }

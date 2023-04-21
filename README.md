@@ -37,6 +37,14 @@ or specify a filename to import (staring from storage/app)
 php artisan translations:import --filename=yourFileName.xlsx 
 ```
 
+## Adding language_lines
+
+If you want to add language lines it's as easy as adding Excel rows.
+
+## Adding translations
+
+If you want to add a translation it's as easy as adding columns to Excel.
+
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.
