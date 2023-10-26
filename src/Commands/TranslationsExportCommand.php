@@ -4,6 +4,7 @@ namespace DeltaSolutions\TranslationsExportImport\Commands;
 
 use DeltaSolutions\TranslationsExportImport\TranslationsExportImport;
 use Illuminate\Console\Command;
+
 use function Laravel\Prompts\select;
 
 class TranslationsExportCommand extends Command
@@ -20,12 +21,11 @@ class TranslationsExportCommand extends Command
             'What filetype do you want?',
             ['xlsx', 'csv'],
         );
-        if($type == 'csv'){
+        if ($type == 'csv') {
             (new TranslationsExportImport())->csv($filename);
-        }else{
+        } else {
             (new TranslationsExportImport())->export($filename);
         }
-
 
         return self::SUCCESS;
     }
