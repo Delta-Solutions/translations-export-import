@@ -22,17 +22,17 @@ class Translations implements ToModel, WithProgressBar, WithHeadingRow
         $row['text'] = [];
 
         //get the difference between the columns in the database and the columns in the excel file
-        $fields     = Schema::getColumnListing('language_lines');
+        $fields = Schema::getColumnListing('language_lines');
         $textFields = array_diff(array_keys($row), $fields);
 
         //only get the text fields from the row
         $valuesToExtract = array_intersect_key($row, array_flip($textFields));
         //filter out empty values
         $filteredArray = array_filter($valuesToExtract, function ($value) {
-            return !blank($value);
+            return ! blank($value);
         });
         //set the text field to the filtered array
-        $row['text']       = $filteredArray;
+        $row['text'] = $filteredArray;
         $row['updated_at'] = Carbon::now();
         //remove the text fields from the row
         $row = array_diff_key($row, array_flip($textFields));

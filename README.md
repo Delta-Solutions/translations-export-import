@@ -1,3 +1,5 @@
+![Translations-export-import](https://banners.beyondco.de/translations-export-import.png?theme=light&packageManager=composer+require&packageName=delta-solutions%2Ftranslations-export-import&pattern=architect&style=style_1&description=Export+and+import+your+spatie%2Flaravel-translation-loader+powered+translations+to+and+from+Excel&md=1&showWatermark=0&fontSize=100px&images=document-download&widths=auto)
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/delta-solutions/translations-export-import.svg?style=flat-square)](https://packagist.org/packages/delta-solutions/translations)
 [![Total Downloads](https://img.shields.io/packagist/dt/delta-solutions/translations-export-import.svg?style=flat-square)](https://packagist.org/packages/delta-solutions/translations)
 
