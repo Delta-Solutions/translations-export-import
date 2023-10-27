@@ -9,7 +9,7 @@ class TranslationsExportImport
 {
     public function export($fileName, $disk = null, $type = 'xlsx'): bool
     {
-        $writer= ($type == "xlsx" ? \Maatwebsite\Excel\Excel::XLSX : \Maatwebsite\Excel\Excel::CSV);
+        $writer = ($type == 'xlsx' ? \Maatwebsite\Excel\Excel::XLSX : \Maatwebsite\Excel\Excel::CSV);
 
         return Excel::store(new \DeltaSolutions\TranslationsExportImport\Exports\Translations(), $fileName ?? 'language_lines.'.$type, $disk, $writer);
     }
@@ -18,7 +18,7 @@ class TranslationsExportImport
     {
         //check if the file exists, if not, check if the csv file exists else take excel
 
-        if (blank($filename) || !file_exists(storage_path('app/'.$filename))) {
+        if (blank($filename) || ! file_exists(storage_path('app/'.$filename))) {
             if (file_exists(storage_path('app/language_lines.csv'))) {
                 $filename = 'language_lines.csv';
             } else {

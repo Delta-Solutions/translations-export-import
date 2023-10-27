@@ -17,7 +17,7 @@ class TranslationsExportCommand extends Command
     {
         $filename = $this->option('filename');
 
-        (new TranslationsExportImport())->export($filename,type:$this->getType());
+        (new TranslationsExportImport())->export($filename, type: $this->getType());
 
         return self::SUCCESS;
     }
@@ -25,13 +25,14 @@ class TranslationsExportCommand extends Command
     private function getType(): string
     {
         $type = $this->option('type');
-        if (!filled($type)) {
+        if (! filled($type)) {
             $type = select(
                 'What filetype do you want?',
                 default: 'xlsx',
-                options:['xlsx', 'csv'],
+                options: ['xlsx', 'csv'],
             );
         }
+
         return $type;
     }
 }
