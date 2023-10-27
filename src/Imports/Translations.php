@@ -10,7 +10,7 @@ use Maatwebsite\Excel\Concerns\WithHeadingRow;
 use Maatwebsite\Excel\Concerns\WithProgressBar;
 use Spatie\TranslationLoader\LanguageLine;
 
-class Translations implements ToModel, WithProgressBar, WithHeadingRow
+class Translations implements ToModel, WithHeadingRow, WithProgressBar
 {
     use Importable;
 
