@@ -11,7 +11,7 @@ class TranslationsExportCommand extends Command
 {
     public $signature = 'translations:export {--filename=} {--type=}';
 
-    public $description = 'Export the translations table';
+    public $description = 'Export the language_lines table';
 
     public function handle(): int
     {

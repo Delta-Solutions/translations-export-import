@@ -9,7 +9,7 @@ class TranslationsImportCommand extends Command
 {
     public $signature = 'translations:import {--filename=}';
 
-    public $description = 'Import a file to the translations table';
+    public $description = 'Import a file to the language_lines table';
 
     public function handle(): int
     {
