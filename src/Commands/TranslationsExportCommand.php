@@ -8,7 +8,7 @@ use function Laravel\Prompts\select;
 
 class TranslationsExportCommand extends Command
 {
-    public $signature = 'translations:export {--filename=}';
+    public $signature = 'translations:export {--filename=} {--type=}';
 
     public $description = 'Export the translations table';
 
@@ -16,17 +16,21 @@ class TranslationsExportCommand extends Command
     {
         $filename = $this->option('filename');
 
-        $type = select(
-            'What filetype do you want?',
-            ['xlsx', 'csv'],
-        );
-        if($type == 'csv'){
-            (new TranslationsExportImport())->csv($filename);
-        }else{
-            (new TranslationsExportImport())->export($filename);
-        }
-
+        (new TranslationsExportImport())->export($filename,type:$this->getType());
 
         return self::SUCCESS;
+    }
+
+    private function getType(): string
+    {
+        $type = $this->option('type');
+        if (!filled($type)) {
+            $type = select(
+                'What filetype do you want?',
+                default: 'xlsx',
+                options:['xlsx', 'csv'],
+            );
+        }
+        return $type;
     }
 }

@@ -7,14 +7,11 @@ use Maatwebsite\Excel\Facades\Excel;
 
 class TranslationsExportImport
 {
-    public function export($fileName, $disk = null): bool
+    public function export($fileName, $disk = null, $type = 'xlsx'): bool
     {
-        return Excel::store(new \DeltaSolutions\TranslationsExportImport\Exports\Translations(), $fileName ?? 'language_lines.xlsx', $disk, \Maatwebsite\Excel\Excel::XLSX);
-    }
+        $writer= ($type == "xlsx" ? \Maatwebsite\Excel\Excel::XLSX : \Maatwebsite\Excel\Excel::CSV);
 
-    public function csv($fileName, $disk = null): bool
-    {
-        return Excel::store(new \DeltaSolutions\TranslationsExportImport\Exports\Translations(), $fileName ?? 'language_lines.csv', $disk, \Maatwebsite\Excel\Excel::CSV);
+        return Excel::store(new \DeltaSolutions\TranslationsExportImport\Exports\Translations(), $fileName ?? 'language_lines.'.$type, $disk, $writer);
     }
 
     public function import($filename, $disk = null): \Maatwebsite\Excel\Excel
