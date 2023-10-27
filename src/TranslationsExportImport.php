@@ -16,6 +16,16 @@ class TranslationsExportImport
 
     public function import($filename, $disk = null): \Maatwebsite\Excel\Excel
     {
-        return Excel::import(new Translations(), $filename ?? 'language_lines.xlsx', $disk);
+        //check if the file exists, if not, check if the csv file exists else take excel
+
+        if (blank($filename) || !file_exists(storage_path('app/'.$filename))) {
+            if (file_exists(storage_path('app/language_lines.csv'))) {
+                $filename = 'language_lines.csv';
+            } else {
+                $filename = 'language_lines.xlsx';
+            }
+        }
+
+        return Excel::import(new Translations(), $filename, $disk);
     }
 }
